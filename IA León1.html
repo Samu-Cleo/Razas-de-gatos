@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razas de Gatos</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #E8F5E9, #A5D6A7);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(to right, #2E7D32, #1B5E20);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+        header p {
+            margin: 0.5rem 0 0;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+        .content {
+            margin: 2rem auto;
+            padding: 2rem;
+            max-width: 900px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .video-container {
+            text-align: center;
+        }
+        .main-video {
+            width: 100%;
+            max-width: 400px;
+            display: block;
+            margin: 0 auto 2rem;
+            border-radius: 12px;
+            border: 5px solid #2E7D32;
+            filter: sepia(0.7);
+        }
+        .breed-section {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        .breed-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .breed-section a {
+            text-decoration: none;
+        }
+        .breed-section h2 {
+            font-size: 2rem;
+            margin-top: 0;
+            display: inline-block;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        /* Estilo para Gato Siamés */
+        .content div:nth-of-type(2) h2 {
+            background-image: linear-gradient(45deg, #F5F5DC, #6B4F3A);
+        }
+        /* Estilo para Gato Persa */
+        .content div:nth-of-type(3) h2 {
+            background-image: linear-gradient(45deg, #EAEAEA, #BDBDBD);
+        }
+        /* Estilo para Maine Coon */
+        .content div:nth-of-type(4) h2 {
+            background-image: linear-gradient(45deg, #D2B48C, #6B4F3A);
+        }
+        /* Estilo para British Shorthair */
+        .content div:nth-of-type(5) h2 {
+            background-image: linear-gradient(45deg, #B0C4DE, #778899);
+        }
+        /* Estilo para Sagrado de Birmania */
+        .content div:nth-of-type(6) h2 {
+            background-image: linear-gradient(45deg, #FFF8DC, #DEB887);
+        }
+        /* Estilo para Bombay */
+        .content div:nth-of-type(7) h2 {
+            background-image: linear-gradient(45deg, #333, #000);
+        }
+        .breed-section p {
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .chat-button-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        #chat-button {
+            background: #2E7D32;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.5);
+        }
+        #chat-button:hover {
+            transform: translateY(-3px);
+            background: #1B5E20;
+            box-shadow: 0 6px 20px rgba(27, 94, 32, 0.7);
+        }
+        #chat-popup {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 400px;
+            height: 600px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            z-index: 1000;
+            animation: slideIn 0.5s ease;
+        }
+        #chat-popup iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .scroll-buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            z-index: 1001;
+        }
+
+        .scroll-buttons button {
+            background: #2E7D32;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .scroll-buttons button:hover {
+            background: #1B5E20;
+        }
+
+        .hamburger-menu {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1002;
+        }
+
+        #menu-button {
+            background: #2E7D32;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1003;
+            top: 0;
+            left: 0;
+.            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidebar .close-btn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Descubre las Fascinantes Razas de Gatos</h1>
+        <p>Tu guía virtual del mundo felino</p>
+    </header>
+
+    <div class="hamburger-menu">
+        <button id="menu-button">☰</button>
+    </div>
+
+    <div id="sidebar-menu" class="sidebar">
+        <a href="javascript:void(0)" class="close-btn" id="close-menu-btn">&times;</a>
+        <a href="siames_cuidados.html">Gato Siamés</a>
+        <a href="persa_cuidados.html">Gato Persa</a>
+        <a href="maine_coon_cuidados.html">Maine Coon</a>
+        <a href="british_shorthair_cuidados.html">British Shorthair</a>
+        <a href="sagrado_de_birmania_cuidados.html">Sagrado de Birmania</a>
+        <a href="bombay_cuidados.html">Bombay</a>
+    </div>
+
+    <div class="content">
+        <div class="video-container">
+            <video class="main-video" controls>
+                <source src="cleoymuma.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de video.
+            </video>
+        </div>
+
+        <div id="siames" class="breed-section">
+            <a href="siames_cuidados.html"><h2>Gato Siamés</h2></a>
+            <p>El siamés es una de las razas de gato más fácilmente reconocibles. Son conocidos por su cuerpo esbelto, ojos azules almendrados y un pelaje distintivo con puntos de color más oscuro en las orejas, cara, patas y cola. Son gatos muy sociables, inteligentes y vocales, que demandan atención y cariño de sus dueños.</p>
+        </div>
+
+        <div id="persa" class="breed-section">
+            <a href="persa_cuidados.html"><h2>Gato Persa</h2></a>
+            <p>El gato persa es famoso por su largo y exuberante pelaje, cara achatada y carácter tranquilo. Son gatos de naturaleza dulce y apacible, que disfrutan de un ambiente sereno y son compañeros de regazo ideales. Requieren un cepillado diario para mantener su pelaje libre de nudos y en buen estado.</p>
+        </div>
+
+        <div id="maine-coon" class="breed-section">
+            <a href="maine_coon_cuidados.html"><h2>Maine Coon</h2></a>
+            <p>Conocido como el "gigante gentil", el Maine Coon es una de las razas de gatos domésticos más grandes. Tienen un pelaje semi-largo y denso, una cola tupida y a menudo mechones de pelo en las puntas de las orejas. A pesar de su tamaño, son gatos amigables, juguetones y muy inteligentes, a menudo comparados con los perros por su lealtad.</p>
+        </div>
+
+        <div id="british-shorthair" class="breed-section">
+            <a href="british_shorthair_cuidados.html"><h2>British Shorthair</h2></a>
+            <p>El British Shorthair es un gato de tamaño mediano a grande, con un cuerpo robusto y un pelaje corto y denso. Son conocidos por su carácter tranquilo y su naturaleza afectuosa. Son excelentes compañeros para familias.</p>
+        </div>
+
+        <div id="sagrado-de-birmania" class="breed-section">
+            <a href="sagrado_de_birmania_cuidados.html"><h2>Sagrado de Birmania</h2></a>
+            <p>El Sagrado de Birmania es un gato de pelo semilargo con un característico patrón de color y guantes blancos en las patas. Son gatos dóciles, tranquilos y muy sociables, que disfrutan de la compañía de las personas.</p>
+        </div>
+
+        <div id="bombay" class="breed-section">
+            <a href="bombay_cuidados.html"><h2>Bombay</h2></a>
+            <p>El gato Bombay parece una pantera en miniatura. Son gatos de pelo corto, negro y brillante, muy musculosos. Son juguetones, curiosos y les encanta estar cerca de sus dueños.
+            </p>
+        </div>
+
+        <div class="chat-button-container">
+            <button id="chat-button">Hablar con Asistente Virtual</button>
+        </div>
+    </div>
+
+    <div id="chat-popup">
+        <iframe src="https://www.chatbase.co/chatbot-iframe/PPaLo1D2DGBnPOR-OkA3Z"></iframe>
+    </div>
+
+    <div class="scroll-buttons">
+        <button id="scroll-up">▲</button>
+        <button id="scroll-down">▼</button>
+    </div>
+
+    <script>
+        document.getElementById('chat-button').addEventListener('click', function() {
+            var chatPopup = document.getElementById('chat-popup');
+            if (chatPopup.style.display === 'none' || chatPopup.style.display === '') {
+                chatPopup.style.display = 'block';
+            } else {
+                chatPopup.style.display = 'none';
+            }
+        });
+
+        document.getElementById('scroll-up').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.getElementById('scroll-down').addEventListener('click', function() {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        });
+
+        document.getElementById('menu-button').addEventListener('click', function() {
+            document.getElementById('sidebar-menu').style.width = '250px';
+        });
+
+        document.getElementById('close-menu-btn').addEventListener('click', function() {
+            document.getElementById('sidebar-menu').style.width = '0';
+        });
+    </script>
+</body>
+</html>
