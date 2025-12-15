@@ -49,7 +49,6 @@
             margin: 0 auto 2rem;
             border-radius: 12px;
             border: 5px solid #2E7D32;
-            filter: sepia(0.7);
         }
         .breed-section {
             margin-bottom: 2rem;
@@ -72,27 +71,27 @@
             background-clip: text;
         }
         /* Estilo para Gato Siamés */
-        .content div:nth-of-type(2) h2 {
+        #siames h2 {
             background-image: linear-gradient(45deg, #F5F5DC, #6B4F3A);
         }
         /* Estilo para Gato Persa */
-        .content div:nth-of-type(3) h2 {
+        #persa h2 {
             background-image: linear-gradient(45deg, #EAEAEA, #BDBDBD);
         }
         /* Estilo para Maine Coon */
-        .content div:nth-of-type(4) h2 {
+        #maine-coon h2 {
             background-image: linear-gradient(45deg, #D2B48C, #6B4F3A);
         }
         /* Estilo para British Shorthair */
-        .content div:nth-of-type(5) h2 {
+        #british-shorthair h2 {
             background-image: linear-gradient(45deg, #B0C4DE, #778899);
         }
         /* Estilo para Sagrado de Birmania */
-        .content div:nth-of-type(6) h2 {
+        #sagrado-de-birmania h2 {
             background-image: linear-gradient(45deg, #FFF8DC, #DEB887);
         }
         /* Estilo para Bombay */
-        .content div:nth-of-type(7) h2 {
+        #bombay h2 {
             background-image: linear-gradient(45deg, #333, #000);
         }
         .breed-section p {
@@ -197,23 +196,26 @@
             z-index: 1003;
             top: 0;
             left: 0;
-.            background-color: #111;
+            background-color: #FFF8DC;
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
+            border-right: 3px solid #6B4F3A;
+            box-shadow: 3px 0px 15px rgba(0,0,0,0.2);
         }
 
         .sidebar a {
             padding: 10px 15px;
             text-decoration: none;
             font-size: 25px;
-            color: #818181;
+            color: #6B4F3A;
             display: block;
             transition: 0.3s;
         }
 
         .sidebar a:hover {
-            color: #f1f1f1;
+            color: #8B4513;
+            background-color: #F5DEB3;
         }
 
         .sidebar .close-btn {
@@ -232,11 +234,11 @@
     </header>
 
     <div class="hamburger-menu">
-        <button id="menu-button">☰</button>
+        <button id="menu-button" aria-label="Abrir menú de navegación">☰</button>
     </div>
 
     <div id="sidebar-menu" class="sidebar">
-        <a href="javascript:void(0)" class="close-btn" id="close-menu-btn">&times;</a>
+        <a href="javascript:void(0)" class="close-btn" id="close-menu-btn" aria-label="Cerrar menú de navegación">&times;</a>
         <a href="siames_cuidados.html">Gato Siamés</a>
         <a href="persa_cuidados.html">Gato Persa</a>
         <a href="maine_coon_cuidados.html">Maine Coon</a>
@@ -294,8 +296,8 @@
     </div>
 
     <div class="scroll-buttons">
-        <button id="scroll-up">▲</button>
-        <button id="scroll-down">▼</button>
+        <button id="scroll-up" aria-label="Desplazarse hacia arriba">▲</button>
+        <button id="scroll-down" aria-label="Desplazarse hacia abajo">▼</button>
     </div>
 
     <script>
